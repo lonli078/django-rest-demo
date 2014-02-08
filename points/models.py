@@ -10,3 +10,6 @@ class OriginationPoint(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    def login_password(self):
+        return self.login + '@' + self.password
