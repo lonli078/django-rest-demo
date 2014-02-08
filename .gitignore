@@ -1,0 +1,17 @@
+db.sqlite3
+*.py[co]
+.project
+.pydevproject
+.settings
+.*env*
+*.cache
+*.db
+log
+_trial_temp
+media/debug.log
+media/pbx/.*
+media/clients/sms/switch_api.log
+*.nja
+.coverage
+.idea
+local_settings.py
