@@ -18,4 +18,5 @@ update: curl -X PUT http://127.0.0.1:8000/op/1 -d '{"name": "op1", "login": "new
 
 
 #### step_3: Use Generics api view class from django-rest-framework
- 
+
+#### step_4: serializer pumping
