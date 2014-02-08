@@ -47,3 +47,54 @@ def op_detail(request, pk):
     elif request.method == 'DELETE':
         op.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+#USE APIView
+from rest_framework.views import APIView
+from django.http import Http404
+
+
+class OpListApiView(APIView):
+    """
+    List all op, or create a new op.
+    """
+    def get(self, request, format=None):
+        ops = OriginationPoint.objects.all()
+        serializer = OriginationPointSerializer(ops, many=True)
+        return Response(serializer.data)
+
+    def post(self, request, format=None):
+        serializer = OriginationPointSerializer(data=request.DATA)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class OpDetailApiView(APIView):
+    """
+    Retrieve, update or delete a op instance.
+    """
+    def get_object(self, pk):
+        try:
+            return OriginationPoint.objects.get(pk=pk)
+        except OriginationPoint.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk, format=None):
+        op = self.get_object(pk)
+        serializer = OriginationPointSerializer(op)
+        return Response(serializer.data)
+
+    def put(self, request, pk, format=None):
+        op = self.get_object(pk)
+        serializer = OriginationPointSerializer(op, data=request.DATA)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    def delete(self, request, pk, format=None):
+        op = self.get_object(pk)
+        op.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
