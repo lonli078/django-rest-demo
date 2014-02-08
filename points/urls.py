@@ -7,5 +7,8 @@ urlpatterns = patterns('points.views',
 
     url(r'^apiview/op/$', views.OpListApiView.as_view()),
     url(r'^apiview/op/(?P<pk>[0-9]+)/$', views.OpDetailApiView.as_view()),
+
+    url(r'^genview/op/$', views.OpListGenericView.as_view()),
+    url(r'^genview/op/(?P<pk>[0-9]+)/$', views.OpDetailGenericView.as_view()),
 )
 

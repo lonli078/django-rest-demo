@@ -98,3 +98,17 @@ class OpDetailApiView(APIView):
         op = self.get_object(pk)
         op.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+#Generic views
+from rest_framework import generics
+
+
+class OpListGenericView(generics.ListCreateAPIView):
+    queryset = OriginationPoint.objects.all()
+    serializer_class = OriginationPointSerializer
+
+
+class OpDetailGenericView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = OriginationPoint.objects.all()
+    serializer_class = OriginationPointSerializer
