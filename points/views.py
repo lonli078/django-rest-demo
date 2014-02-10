@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 from .models import OriginationPoint
+from .models import TerminationPoint
+from .models import RelationPoints
 from .serializers import OriginationPointSerializer
+from .serializers import TerminationPointSerializer
+from .serializers import RelationPointsSerializer
 from rest_framework import generics
 from rest_framework.settings import api_settings
 from rest_framework import filters
@@ -82,3 +86,23 @@ class OpDetailGenericView(generics.RetrieveUpdateDestroyAPIView):
         Placeholder method for calling after deleting an object.
         """
         pass
+
+
+class TpListGenericView(generics.ListCreateAPIView):
+    model = TerminationPoint
+    serializer_class = TerminationPointSerializer
+
+
+class TpDetailGenericView(generics.RetrieveUpdateDestroyAPIView):
+    model = TerminationPoint
+    serializer_class = TerminationPointSerializer
+
+
+class RelationPointsListGenericView(generics.ListCreateAPIView):
+    model = RelationPoints
+    serializer_class = RelationPointsSerializer
+
+
+class RelationPointsDetailGenericView(generics.RetrieveUpdateDestroyAPIView):
+    model = RelationPoints
+    serializer_class = RelationPointsSerializer

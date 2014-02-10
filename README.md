@@ -22,3 +22,5 @@ update: curl -X PUT http://127.0.0.1:8000/op/1 -d '{"name": "op1", "login": "new
 #### step_4: serializer pumping
 
 #### step_5: generics pumping
+
+#### step_6: relations view
